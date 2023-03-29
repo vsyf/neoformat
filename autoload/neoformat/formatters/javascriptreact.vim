@@ -1,5 +1,5 @@
 function! neoformat#formatters#javascriptreact#enabled() abort
-    return ['jsbeautify', 'standard', 'semistandard', 'prettier', 'prettydiff', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
+    return ['jsbeautify', 'standard', 'semistandard', 'prettierd', 'prettier', 'prettydiff', 'esformatter', 'prettiereslint', 'eslint_d', 'denofmt']
 endfunction
 
 function! neoformat#formatters#javascriptreact#jsbeautify() abort
@@ -40,6 +40,14 @@ function! neoformat#formatters#javascriptreact#prettier() abort
         \ }
 endfunction
 
+function! neoformat#formatters#javascriptreact#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
 function! neoformat#formatters#javascriptreact#prettiereslint() abort
     return {
         \ 'exe': 'prettier-eslint',
@@ -70,7 +78,7 @@ endfunction
 function! neoformat#formatters#javascriptreact#denofmt() abort
     return {
         \ 'exe': 'deno',
-        \ 'args': ['fmt','-'],
+        \ 'args': ['fmt','--ext','jsx','-'],
         \ 'stdin': 1,
         \ }
 endfunction

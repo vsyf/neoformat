@@ -1,5 +1,5 @@
 function! neoformat#formatters#jsonc#enabled() abort
-    return ['prettier', 'denofmt']
+    return ['prettierd', 'prettier', 'denofmt']
 endfunction
 
 function! neoformat#formatters#jsonc#prettier() abort
@@ -11,10 +11,18 @@ function! neoformat#formatters#jsonc#prettier() abort
         \ }
 endfunction
 
+function! neoformat#formatters#jsonc#prettierd() abort
+    return {
+        \ 'exe': 'prettierd',
+        \ 'args': ['"%:p"'],
+        \ 'stdin': 1,
+        \ }
+endfunction
+
 function! neoformat#formatters#jsonc#denofmt() abort
     return {
         \ 'exe': 'deno',
-        \ 'args': ['fmt','-'],
+        \ 'args': ['fmt','--ext','jsonc','-'],
         \ 'stdin': 1,
         \ }
 endfunction
